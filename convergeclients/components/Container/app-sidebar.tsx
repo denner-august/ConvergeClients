@@ -12,7 +12,6 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useEffect } from "react";
 
 const items = [
   {
@@ -38,35 +37,37 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { setOpenMobile, setOpen } = useSidebar();
+  const { toggleSidebar } = useSidebar();
 
-  useEffect(() => {
-    () => setOpenMobile(true);
-    () => setOpen(true);
-  }, []);
+  function closeSidebar() {
+    toggleSidebar();
+  }
 
   return (
     <Sidebar side="left">
-      <SidebarHeader className="px-6 py-4">
+      <SidebarHeader className="px-6 py-4, bg-[#DFD5C9] ">
         <div className="flex items-center space-x-2">
           <span className="font-bold text-xl text-center text-traffic-blue-800">
-            tráfego pago <br /> Gestão de Clientes
+            Gestão de clientes <br /> para tráfego pago
           </span>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+
+      <SidebarContent className="bg-[#DFD5C9]">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <button key={item.title} onClick={closeSidebar}>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </button>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
