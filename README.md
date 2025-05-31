@@ -24,6 +24,8 @@ A validação da solução foi realizada com o auxílio do Cypress, que permitiu
 * **Banco de Dados NoSQL ou Armazenamento Local**
 * **Cypress:** Framework para testes de ponta a ponta na interface do usuário
 * **GitHub:** Utilizado para controle de versão e gestão do código durante o desenvolvimento.
+* **ui.shadcn:** Utilizado para gerar alguns componentes.
+* **lucide.dev** Utilizado para icones.
 
 ## Resultados e Apelo Mercadológico
 
