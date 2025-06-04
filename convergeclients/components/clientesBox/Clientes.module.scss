@@ -18,3 +18,49 @@
     align-items: center;
   }
 }
+
+.ClientesInfo {
+  height: auto;
+
+  margin-top: 1rem;
+  padding: 2rem;
+
+  border-radius: 0.5rem;
+  // background-color: red;
+
+  border: 0.1rem solid black;
+
+  .Cliente {
+    // background-color: rgb(191, 202, 219);
+    border: 0.1rem solid black;
+
+    margin: 1rem;
+
+    border-radius: 0.5rem;
+
+    cursor: pointer;
+
+    padding: 0.5rem;
+
+    &:hover {
+      background-color: rgb(160, 169, 182);
+    }
+
+    &:active {
+      background-color: rgb(191, 202, 219);
+    }
+  }
+
+  .Contrato {
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 1.5rem;
+      // background-color: peru;
+
+      width: 30rem;
+      height: auto;
+    }
+  }
+}
