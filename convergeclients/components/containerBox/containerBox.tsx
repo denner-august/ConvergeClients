@@ -3,6 +3,7 @@ import styles from "./ContainerBox.module.scss";
 import { UserPlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { DialogDemo } from "../createClient/createClient";
 
 export function ContainerBox() {
   return (
@@ -12,9 +13,7 @@ export function ContainerBox() {
         <p>Gerencie seus clientes em um só lugar.</p>
       </div>
 
-      <Button>
-        novo cliente <UserPlus />
-      </Button>
+      <DialogDemo />
     </div>
   );
 }
