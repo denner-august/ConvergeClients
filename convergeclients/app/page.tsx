@@ -9,12 +9,12 @@ import { ClientesBox } from "@/components/clientesBox/ClientesBox";
 export default function Home() {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      {/* <AppSidebar /> */}
       <main className={ContainerSideBar.Container}>
-        <div className={ContainerSideBar.headSideBar}>
+        {/* <div className={ContainerSideBar.headSideBar}>
           <SidebarTrigger size="lg" className={ContainerSideBar.Trigger} />
           <p>Gestor de tráfego</p>
-        </div>
+        </div> */}
 
         <div className={ConteudoBox.Container}>
           <ContainerBox />
