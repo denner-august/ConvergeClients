@@ -1,4 +1,5 @@
 "use client";
+import styles from "./createClient.module.scss";
 import { Button } from "@/components/ui/button";
 import { DayPicker } from "react-day-picker";
 
@@ -24,13 +25,26 @@ export function DialogDemo() {
 
   return (
     <Dialog>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault(); // Evita o recarregamento da página
+          const formData = new FormData(e.currentTarget);
+          const name = formData.get("name");
+          const username = formData.get("username");
+
+          console.log("Nome:", name);
+          console.log("Username:", username);
+          // Faça algo com os dados, como enviar para uma API
+        }}
+      >
         <DialogTrigger asChild>
           <Button variant="outline" className="bg-black text-white">
             novo cliente <UserPlus />
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent
+          className={`sm:max-w-[425px] max-h-[500px] overflow-auto ${styles.Container}`}
+        >
           <DialogHeader>
             <DialogTitle>Adicionar um novo cliente</DialogTitle>
             <DialogDescription>
@@ -55,21 +69,18 @@ export function DialogDemo() {
               <Label htmlFor="ModeloNegocioCliente">
                 Modelo de negocio do cliente
               </Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
+              <Input
+                id="username-1"
+                name="username"
+                defaultValue="e-commerce"
+              />
             </div>
             <div className="grid gap-3">
               {/* adicionar component de monetário */}
               <Label htmlFor="contratoCliente">
                 Valor do contrato do cliente
               </Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
-            </div>
-            <div className="grid gap-3">
-              {/* adicionar component de monetário */}
-              <Label htmlFor="contratoCliente">
-                Valor do contrato do cliente
-              </Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
+              <Input id="username-1" name="username" defaultValue="R$ 1.000" />
             </div>
 
             <div className="grid gap-3">
@@ -83,16 +94,18 @@ export function DialogDemo() {
                 footer={
                   selected
                     ? `Começou no dia: ${selected.toLocaleDateString()}`
-                    : "Pick a day."
+                    : "Selecione a data inicio do contrato"
                 }
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className={styles.Footer}>
             <DialogClose asChild>
-              <Button variant="outline">Cancelar</Button>
+              <Button variant="outline" className={styles.create}>
+                Cancelar
+              </Button>
             </DialogClose>
-            <Button type="submit" className="cursor-pointer ">
+            <Button type="submit" className={styles.create}>
               Adicionar
             </Button>
           </DialogFooter>
