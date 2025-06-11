@@ -17,6 +17,8 @@
     display: flex;
     align-items: center;
   }
+
+  // background-color: red;
 }
 
 .ClientesInfo {
@@ -26,12 +28,12 @@
   padding: 2rem;
 
   border-radius: 0.5rem;
-  // background-color: red;
 
   border: 0.1rem solid black;
 
+  border: hidden;
+
   .Cliente {
-    // background-color: rgb(191, 202, 219);
     border: 0.1rem solid black;
 
     margin: 1rem;
@@ -57,10 +59,36 @@
 
     h3 {
       font-size: 1.5rem;
-      // background-color: peru;
 
       width: 30rem;
       height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .ClientesInfo {
+    padding: 0rem;
+
+    .Contrato {
+      h3 {
+        text-align: center;
+        width: auto;
+      }
+
+      p,
+      h3 {
+        margin: 0.3rem 0rem;
+      }
+
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      width: auto;
     }
   }
 }
