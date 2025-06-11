@@ -6,19 +6,26 @@ import ConteudoBox from "../styles/conteudoBox.module.scss";
 import ContainerSideBar from "../styles/sidebar.module.scss";
 import { ClientesBox } from "@/components/clientesBox/ClientesBox";
 
-export default function Home() {
+interface ClientesProps {
+  id: number;
+  ClientNome: String;
+  titulo: string;
+  descrição: string;
+  modeloDeNegocio: string;
+  valorAtualDoContrato: string;
+  dataInicio: string;
+}
+
+export default async function Home() {
+  let getAllClients = await fetch("http://localhost:3000/api/users/getUsers");
+  let clients = await getAllClients.json();
+
   return (
     <SidebarProvider>
-      {/* <AppSidebar /> */}
       <main className={ContainerSideBar.Container}>
-        {/* <div className={ContainerSideBar.headSideBar}>
-          <SidebarTrigger size="lg" className={ContainerSideBar.Trigger} />
-          <p>Gestor de tráfego</p>
-        </div> */}
-
         <div className={ConteudoBox.Container}>
           <ContainerBox />
-          <ClientesBox />
+          <ClientesBox AllClients={clients} />
         </div>
       </main>
     </SidebarProvider>
