@@ -1,65 +1,61 @@
 import styles from "./Clientes.module.scss";
-export function ClientesInfo() {
-  const clientes = [
-    {
-      id: 1,
-      titulo: "Comércio Online Brasil",
-      descricao: "Loja virtual de produtos variados",
-      DataInicio: "01/01/2025",
-      tipo: "E-commerce",
-      valorDoContrato: "R$ 1.000,00",
-      status: "ativo",
-    },
-    {
-      id: 2,
-      titulo: "Cliente 2",
-      descricao: "Descrição do cliente 2",
-      DataInicio: "02/01/2025",
-      tipo: "infoproduto",
-      valorDoContrato: "R$ 2.000,00",
-      status: "ativo",
-    },
-    {
-      id: 3,
-      titulo: "Cliente 2",
-      descricao: "Descrição do cliente 2",
-      DataInicio: "02/01/2025",
-      tipo: "infoproduto",
-      valorDoContrato: "R$ 2.000,00",
-      status: "ativo",
-    },
-    {
-      id: 4,
-      titulo: "Cliente 2",
-      descricao: "Descrição do cliente 2",
-      DataInicio: "02/01/2025",
-      tipo: "infoproduto",
-      valorDoContrato: "R$ 2.000,00",
-      status: "ativo",
-    },
-  ];
+
+interface clientesEncontradosProps {
+  clientes: {
+    id: number;
+    ClientNome: String;
+    titulo: string;
+    descrição: string;
+    modeloDeNegocio: string;
+    valorAtualDoContrato: string;
+    dataInicio: string;
+  }[];
+}
+
+interface ClientesInfoProps {
+  id: number;
+  titulo: string;
+  descrição: string;
+  dataInicio: string;
+  modeloDeNegocio: string;
+  valorAtualDoContrato: string;
+}
+
+export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
+  const clientes = clientesEncontrados.clientes || [];
 
   return (
     <div>
-      {clientes.map((cliente) => (
-        <div key={cliente.id} className={styles.Cliente}>
-          <div className={styles.Contrato}>
-            <h3>{cliente.titulo}</h3>
-            <p>Valor do Contrato: {cliente.valorDoContrato}</p>
-          </div>
+      {clientes.length > 0 ? (
+        clientes.map((cliente: ClientesInfoProps) => (
+          <div key={cliente.id} className={styles.Cliente}>
+            <div className={styles.Contrato}>
+              <h3>{cliente.titulo}</h3>
+              <p>
+                Valor do Contrato:{" "}
+                {Number(cliente.valorAtualDoContrato).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </p>
+            </div>
 
-          <div className={styles.Contrato}>
-            <p>{cliente.descricao}</p>
-            <p>Data de Início: {cliente.DataInicio}</p>
-          </div>
+            <div className={styles.Contrato}>
+              <p>{cliente.descrição}</p>
+              <p>
+                Data de Início:{" "}
+                {new Date(cliente.dataInicio).toLocaleDateString("pt-BR")}
+              </p>
+            </div>
 
-          <div className={styles.Contrato}>
-            <p>Tipo: {cliente.tipo}</p>
-
-            <p>Status: {cliente.status}</p>
+            <div className={styles.Contrato}>
+              <p>Modelo de negocio: {cliente.modeloDeNegocio}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>Nenhum cliente com esse nome encontrado</p>
+      )}
     </div>
   );
 }
