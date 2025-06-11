@@ -25,42 +25,49 @@ export function DialogDemo() {
 
   return (
     <Dialog>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault(); // Evita o recarregamento da página
-          const formData = new FormData(e.currentTarget);
-          const name = formData.get("name");
-          const username = formData.get("username");
-
-          console.log("Nome:", name);
-          console.log("Username:", username);
-          // Faça algo com os dados, como enviar para uma API
-        }}
+      <DialogTrigger asChild>
+        <Button variant="outline" className="bg-black text-white">
+          novo cliente <UserPlus />
+        </Button>
+      </DialogTrigger>
+      <DialogContent
+        className={`sm:max-w-[425px] max-h-[500px] overflow-auto ${styles.Container}`}
       >
-        <DialogTrigger asChild>
-          <Button variant="outline" className="bg-black text-white">
-            novo cliente <UserPlus />
-          </Button>
-        </DialogTrigger>
-        <DialogContent
-          className={`sm:max-w-[425px] max-h-[500px] overflow-auto ${styles.Container}`}
+        <DialogHeader>
+          <DialogTitle>Adicionar um novo cliente</DialogTitle>
+          <DialogDescription>
+            Preencha todas as abaixo para adicionar um novo cliente.
+          </DialogDescription>
+        </DialogHeader>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Evita o recarregamento da página
+            const formData = new FormData(e.currentTarget);
+            const name = formData.get("NomeCliente");
+            const descrição = formData.get("descrição");
+            const modeloNegocio = formData.get("ModeloNegocioCliente");
+            const valorContrato = formData.get("valorContrato");
+            const dataInicio = selected ? selected.toLocaleDateString() : ""; // Formata a data
+
+            console.log("Nome:", name);
+            console.log("Descrição:", descrição);
+            console.log("Modelo de Negócio:", modeloNegocio);
+            console.log("Valor do Contrato:", valorContrato);
+            console.log("Data de Início:", dataInicio);
+
+            // Faça algo com os dados, como enviar para uma API
+          }}
         >
-          <DialogHeader>
-            <DialogTitle>Adicionar um novo cliente</DialogTitle>
-            <DialogDescription>
-              Preencha todas as abaixo para adicionar um novo cliente.
-            </DialogDescription>
-          </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
               <Label htmlFor="NomeCliente">Nome</Label>
-              <Input id="name-1" name="name" defaultValue="Denner" />
+              <Input id="name-1" name="NomeCliente" defaultValue="Denner" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="DescriçãoCliente">Descrição</Label>
               <Input
-                id="username-1"
-                name="username"
+                id="descrição"
+                name="descrição"
                 defaultValue="Cliente que tem 5 supermecados "
               />
             </div>
@@ -70,8 +77,8 @@ export function DialogDemo() {
                 Modelo de negocio do cliente
               </Label>
               <Input
-                id="username-1"
-                name="username"
+                id="ModeloNegocioCliente"
+                name="ModeloNegocioCliente"
                 defaultValue="e-commerce"
               />
             </div>
@@ -80,7 +87,12 @@ export function DialogDemo() {
               <Label htmlFor="contratoCliente">
                 Valor do contrato do cliente
               </Label>
-              <Input id="username-1" name="username" defaultValue="R$ 1.000" />
+              <Input
+                required
+                id="valorContrato"
+                name="valorContrato"
+                defaultValue="R$ 1.000"
+              />
             </div>
 
             <div className="grid gap-3">
@@ -88,6 +100,7 @@ export function DialogDemo() {
                 Data de inicio do contrato
               </Label>
               <DayPicker
+                required
                 mode="single"
                 selected={selected}
                 onSelect={setSelected}
@@ -109,8 +122,8 @@ export function DialogDemo() {
               Adicionar
             </Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 }
