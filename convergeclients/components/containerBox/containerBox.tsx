@@ -1,8 +1,4 @@
 import styles from "./ContainerBox.module.scss";
-
-import { UserPlus } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { DialogDemo } from "../createClient/createClient";
 
 export function ContainerBox() {
