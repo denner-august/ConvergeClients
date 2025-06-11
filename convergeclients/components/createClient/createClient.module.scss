@@ -1,0 +1,11 @@
+.Container {
+  div {
+    .create {
+      cursor: pointer;
+
+      &:active {
+        color: rgb(32, 101, 175);
+      }
+    }
+  }
+}
