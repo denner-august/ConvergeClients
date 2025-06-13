@@ -5,6 +5,8 @@ import { DayPicker } from "react-day-picker";
 
 import "react-day-picker/dist/style.css";
 
+import { apiCreateClient } from "./apiCreatClient";
+
 import {
   Dialog,
   DialogClose,
@@ -43,32 +45,32 @@ export function DialogDemo() {
           onSubmit={(e) => {
             e.preventDefault(); // Evita o recarregamento da página
             const formData = new FormData(e.currentTarget);
-            const name = formData.get("NomeCliente");
-            const descrição = formData.get("descrição");
-            const modeloNegocio = formData.get("ModeloNegocioCliente");
-            const valorContrato = formData.get("valorContrato");
-            const dataInicio = selected ? selected.toLocaleDateString() : ""; // Formata a data
-
-            console.log("Nome:", name);
-            console.log("Descrição:", descrição);
-            console.log("Modelo de Negócio:", modeloNegocio);
-            console.log("Valor do Contrato:", valorContrato);
-            console.log("Data de Início:", dataInicio);
-
-            // Faça algo com os dados, como enviar para uma API
+            apiCreateClient(formData, selected);
           }}
         >
           <div className="grid gap-4">
             <div className="grid gap-3">
+              <Label htmlFor="titulo">Titulo</Label>
+              <Input
+                id="titulo"
+                name="titulo"
+                placeholder="Escolha um titulo para o cliente"
+              />
+            </div>
+            <div className="grid gap-3">
               <Label htmlFor="NomeCliente">Nome</Label>
-              <Input id="name-1" name="NomeCliente" defaultValue="Denner" />
+              <Input
+                id="name-1"
+                name="NomeCliente"
+                placeholder="Digite o nome do cliente"
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="DescriçãoCliente">Descrição</Label>
               <Input
                 id="descrição"
                 name="descrição"
-                defaultValue="Cliente que tem 5 supermecados "
+                placeholder="Escreva uma breve descrição"
               />
             </div>
 
@@ -79,11 +81,10 @@ export function DialogDemo() {
               <Input
                 id="ModeloNegocioCliente"
                 name="ModeloNegocioCliente"
-                defaultValue="e-commerce"
+                placeholder="Qual o modelo de negocio do seu cliente?"
               />
             </div>
             <div className="grid gap-3">
-              {/* adicionar component de monetário */}
               <Label htmlFor="contratoCliente">
                 Valor do contrato do cliente
               </Label>
@@ -91,7 +92,8 @@ export function DialogDemo() {
                 required
                 id="valorContrato"
                 name="valorContrato"
-                defaultValue="R$ 1.000"
+                type="number"
+                placeholder="digite o valor por extenso: ex: 10000 "
               />
             </div>
 
