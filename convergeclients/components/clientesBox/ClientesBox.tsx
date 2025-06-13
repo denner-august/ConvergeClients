@@ -5,7 +5,7 @@ import { ClientesInfo } from "./clientesInfo";
 
 interface ClientesProps {
   id: number;
-  ClientNome: String;
+  ClientNome: string;
   titulo: string;
   descrição: string;
   modeloDeNegocio: string;
