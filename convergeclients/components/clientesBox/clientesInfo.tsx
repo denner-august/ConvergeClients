@@ -3,7 +3,7 @@ import styles from "./Clientes.module.scss";
 interface clientesEncontradosProps {
   clientes: {
     id: number;
-    ClientNome: String;
+    ClientNome: string;
     titulo: string;
     descrição: string;
     modeloDeNegocio: string;

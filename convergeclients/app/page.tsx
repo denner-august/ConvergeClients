@@ -1,24 +1,16 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/Container/app-sidebar";
-import { ContainerBox } from "@/components/containerBox/containerBox";
-
 import ConteudoBox from "../styles/conteudoBox.module.scss";
 import ContainerSideBar from "../styles/sidebar.module.scss";
-import { ClientesBox } from "@/components/clientesBox/ClientesBox";
 
-interface ClientesProps {
-  id: number;
-  ClientNome: String;
-  titulo: string;
-  descrição: string;
-  modeloDeNegocio: string;
-  valorAtualDoContrato: string;
-  dataInicio: string;
-}
+import { ClientesBox } from "@/components/clientesBox/ClientesBox";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { ContainerBox } from "@/components/containerBox/containerBox";
 
 export default async function Home() {
-  let getAllClients = await fetch("http://localhost:3000/api/users/getUsers");
-  let clients = await getAllClients.json();
+  const getAllClients = await fetch(
+    "http://localhost:3000/api/users/getUsers",
+    { cache: "no-store" }
+  );
+  const clients = await getAllClients.json();
 
   return (
     <SidebarProvider>
