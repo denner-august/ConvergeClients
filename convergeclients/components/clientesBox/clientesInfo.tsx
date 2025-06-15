@@ -43,8 +43,14 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
             <div className={styles.Contrato}>
               <p>{cliente.descrição}</p>
               <p>
-                Data de Início:{" "}
-                {new Date(cliente.dataInicio).toLocaleDateString("pt-BR")}
+                Data de Início:
+                {cliente.dataInicio
+                  ? new Date(cliente.dataInicio).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })
+                  : "Data não informada"}
               </p>
             </div>
 
