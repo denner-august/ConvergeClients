@@ -109,7 +109,7 @@ export function DialogDemo() {
                 footer={
                   selected
                     ? `Começou no dia: ${selected.toLocaleDateString()}`
-                    : "Selecione a data inicio do contrato"
+                    : "Selecione a data de inicio do contrato (se ela não existir, a data será o dia atual)"
                 }
               />
             </div>
