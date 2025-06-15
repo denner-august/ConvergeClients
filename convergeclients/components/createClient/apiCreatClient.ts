@@ -1,3 +1,5 @@
+import { notificationAltert } from "@/alert/Alert";
+
 export function apiCreateClient(users: FormData, data: Date) {
   const titulo = users.get("titulo");
   const name = users.get("NomeCliente");
@@ -20,5 +22,17 @@ export function apiCreateClient(users: FormData, data: Date) {
       valorContrato,
       dataInicio,
     }),
-  });
+  })
+    .then((response) => response.json()) // Converte a resposta para JSON
+    .then((data) => {
+      if (data.message === "usuario criado") {
+        notificationAltert("success", "usuario criado com sucesso!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+        return;
+      } else if (data.message === "Erro ao criar cliente") {
+        return notificationAltert("error", "Error ao criar usuario");
+      }
+    });
 }
