@@ -11,31 +11,33 @@ export async function POST(request: Request) {
       name,
       descrição,
       modeloNegocio,
-      valorContrato,
+      valorDoContrato,
       dataInicio,
     } = data;
 
-    const create = await prisma.users.create({
+    if (!titulo || !name) {
+      return Response.json(
+        { message: "erro ao preencher formulario" },
+        { status: 400 }
+      );
+    }
+
+    const user = await prisma.users.create({
       data: {
         titulo: titulo,
         ClientNome: name,
         descrição: descrição,
         modeloDeNegocio: modeloNegocio,
-        dataInicio:
-          isNaN(new Date(dataInicio).getTime()) === true
-            ? new Date()
-            : new Date(dataInicio),
-        valorAtualDoContrato: Number(valorContrato),
+        valorAtualDoContrato: Number(valorDoContrato),
+        dataInicio: isNaN(new Date(dataInicio).getTime())
+          ? new Date()
+          : new Date(dataInicio),
       },
     });
 
-    if (create) {
-      return Response.json({ message: "usuario criado" }, { status: 200 });
-    }
+    return Response.json(user, { status: 201 });
   } catch (error) {
-    return Response.json(
-      { message: "Erro ao criar cliente", error: error.message },
-      { status: 500 }
-    );
+    console.error("error", error);
+    return Response.json({ message: "erro ao criar usuario" }, { status: 500 });
   }
 }
