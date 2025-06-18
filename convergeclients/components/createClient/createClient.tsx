@@ -15,6 +15,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserPlus } from "lucide-react";
@@ -52,6 +63,7 @@ export function FormCreate() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({ resolver: zodResolver(schema) });
   const [selected, setSelected] = useState<Date>(new Date());
 
@@ -117,12 +129,29 @@ export function FormCreate() {
               </Label>
 
               <p>{errors.modeloDeNegocio?.message}</p>
-              <Input
-                defaultValue={"modelo de negocio do cliente"}
-                id="ModeloNegocioCliente"
-                placeholder="Qual o modelo de negocio do seu cliente?"
-                {...register("modeloDeNegocio")}
-              />
+
+              <Select
+                onValueChange={(value) => {
+                  setValue("modeloDeNegocio", value);
+                }}
+              >
+                <SelectTrigger className="w-[100%]">
+                  <SelectValue placeholder="Selecione o modelo de negócio" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Modelos de negócio</SelectLabel>
+                    <SelectItem value="Negocio local">Negocio local</SelectItem>
+                    <SelectItem value="E-commerce">E-commerce</SelectItem>
+                    <SelectItem value="Lançamento">Lançamento</SelectItem>
+                    <SelectItem value="perpetuo">perpetuo</SelectItem>
+                    <SelectItem value="assinatura">assinatura</SelectItem>
+                    <SelectItem value="markeplace">markeplace</SelectItem>
+                    <SelectItem value="b2b">b2b</SelectItem>
+                    <SelectItem value="b2c">b2c</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
             <div className="grid gap-3">
               <Label htmlFor="contratoCliente">
