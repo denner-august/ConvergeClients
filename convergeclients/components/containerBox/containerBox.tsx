@@ -1,5 +1,5 @@
 import styles from "./ContainerBox.module.scss";
-import { DialogDemo } from "../createClient/createClient";
+import { FormCreate } from "../createClient/createClient";
 
 export function ContainerBox() {
   return (
@@ -9,7 +9,7 @@ export function ContainerBox() {
         <p>Gerencie seus clientes em um só lugar.</p>
       </div>
 
-      <DialogDemo />
+      <FormCreate />
     </div>
   );
 }
