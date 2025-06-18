@@ -1,15 +1,23 @@
 import { notificationAltert } from "@/alert/Alert";
 
-export function apiCreateClient(users: FormData, data: Date) {
-  const titulo = users.get("titulo");
-  const name = users.get("NomeCliente");
-  const descrição = users.get("descrição");
-  const modeloNegocio = users.get("ModeloNegocioCliente");
-  const valorContrato = users.get("valorContrato");
+type apiProps = {
+  titulo: string;
+  nome: string;
+  descrição: string;
+  modeloDeNegocio: string;
+  valorDoContrato: number;
+};
+
+export async function apiCreateClient(users: apiProps, data: Date) {
+  const titulo = users.titulo;
+  const name = users.nome;
+  const descrição = users.descrição;
+  const modeloNegocio = users.modeloDeNegocio;
+  const valorDoContrato = users.valorDoContrato;
 
   const dataInicio = data ? data.toLocaleDateString() : ""; // Formata a data
 
-  fetch("http://localhost:3000/api/users/createUsers", {
+  const response = await fetch("http://localhost:3000/api/users/createUsers", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,20 +27,25 @@ export function apiCreateClient(users: FormData, data: Date) {
       name,
       descrição,
       modeloNegocio,
-      valorContrato,
+      valorDoContrato,
       dataInicio,
     }),
-  })
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((data) => {
-      if (data.message === "usuario criado") {
-        notificationAltert("success", "usuario criado com sucesso!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
-        return;
-      } else if (data.message === "Erro ao criar cliente") {
-        return notificationAltert("error", "Error ao criar usuario");
-      }
-    });
+  });
+
+  switch (response.status) {
+    case 201:
+      notificationAltert("success", "usuario criado com sucesso!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+      break;
+
+    case 400:
+      notificationAltert("warning", "Erro ao preencher o formulario");
+      break;
+
+    case 500:
+      notificationAltert("error", "Erro ao criar novo usuario");
+      break;
+  }
 }
