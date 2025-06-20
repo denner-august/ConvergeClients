@@ -7,7 +7,7 @@ export async function DELETE(request: Request) {
 
   if (!id) {
     return Response.json(
-      { message: "ID do usuario não foi informado." },
+      { message: "ID do cliente não foi informado." },
       { status: 400 }
     );
   }
