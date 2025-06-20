@@ -25,7 +25,9 @@ export function ClientesBox({ AllClients }: { AllClients: ClientesProps[] }) {
     } else {
       setClientAtual(
         AllClients.filter((cliente) =>
-          cliente.titulo.toLowerCase().includes(searchClientes.toLowerCase())
+          cliente.ClientNome.toLowerCase().includes(
+            searchClientes.toLowerCase()
+          )
         )
       );
     }
@@ -35,7 +37,7 @@ export function ClientesBox({ AllClients }: { AllClients: ClientesProps[] }) {
     <div className={styles.Container}>
       <input
         type="text"
-        placeholder="Pesquisar por clientes"
+        placeholder="Pesquisar pelo nome do cliente"
         onChange={(e) => setSearchClientes(e.target.value)}
       />
       <p>Clientes cadastrados</p>
