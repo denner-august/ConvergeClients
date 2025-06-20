@@ -1,4 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import styles from "./Clientes.module.scss";
+import tableStyles from "./tableClients.module.scss";
+import { UserRoundX } from "lucide-react";
+import { removeClients } from "@/conection/removeClient";
 
 interface clientesEncontradosProps {
   clientes: {
@@ -26,52 +32,117 @@ interface ClientesInfoProps {
 export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
   const clientes = clientesEncontrados.clientes || [];
 
-  //  <h4>nome: {cliente.ClientNome}</h4>  preciso adicionar o nome do cliente amanhã
+  const [isMobile, setIsMobile] = useState(false);
 
-  return (
-    <div>
-      {clientes.length > 0 ? (
-        clientes
-          .map((cliente: ClientesInfoProps) => (
-            <div key={cliente.id} className={styles.Cliente}>
-              <div className={styles.Contrato}>
-                <h3> {cliente.titulo}</h3>
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-                <p>
-                  Valor do Contrato:{" "}
-                  {Number(cliente.valorAtualDoContrato).toLocaleString(
-                    "pt-BR",
-                    {
-                      style: "currency",
-                      currency: "BRL",
-                    }
-                  )}
-                </p>
-              </div>
+    handleResize();
 
-              <div className={styles.Contrato}>
-                <p>{cliente.descrição}</p>
-                <p>
-                  Data de Início:
-                  {cliente.dataInicio
-                    ? new Date(cliente.dataInicio).toLocaleDateString("pt-BR", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      })
-                    : "Data não informada"}
-                </p>
-              </div>
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-              <div className={styles.Contrato}>
-                <p>Modelo de negocio: {cliente.modeloDeNegocio}</p>
-              </div>
-            </div>
-          ))
-          .reverse()
-      ) : (
-        <p>Nenhum cliente foi encontrado</p>
-      )}
-    </div>
-  );
+  const TableClientes = () => {
+    // quero remover alguns itens se o width da tela for menor que 768px
+
+    return (
+      <table className={tableStyles.Container}>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Modelo de Negócio</th>
+            <th>Valor do Contrato</th>
+            <th>Data de Início</th>
+            <th>deletar</th>
+          </tr>
+        </thead>
+        <tbody className={tableStyles.tableBody}>
+          {clientes.map((cliente: ClientesInfoProps) => (
+            <tr key={cliente.id}>
+              <td>{cliente.ClientNome}</td>
+              <td>{cliente.titulo}</td>
+              <td>{cliente.descrição}</td>
+              <td>{cliente.modeloDeNegocio}</td>
+              <td>
+                {Number(cliente.valorAtualDoContrato).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </td>
+              <td>
+                {cliente.dataInicio
+                  ? new Date(cliente.dataInicio).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })
+                  : "Data não informada"}
+              </td>
+              <td>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => {
+                    removeClients(cliente.id);
+                  }}
+                >
+                  <UserRoundX />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+  const TableClientesMobile = () => {
+    // quero remover alguns itens se o width da tela for menor que 768px
+
+    return (
+      <table className={tableStyles.Container}>
+        <thead>
+          <tr>
+            <th>Nome</th>
+
+            <th>Modelo de Negócio</th>
+            <th>Valor do Contrato</th>
+
+            <th>deletar</th>
+          </tr>
+        </thead>
+        <tbody className={tableStyles.tableBody}>
+          {clientes.map((cliente: ClientesInfoProps) => (
+            <tr key={cliente.id}>
+              <td>{cliente.ClientNome}</td>
+
+              <td>{cliente.modeloDeNegocio}</td>
+              <td>
+                {Number(cliente.valorAtualDoContrato).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </td>
+
+              <td>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => {
+                    removeClients(cliente.id);
+                  }}
+                >
+                  <UserRoundX />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
+  return <>{isMobile ? <TableClientesMobile /> : <TableClientes />}</>;
 }
