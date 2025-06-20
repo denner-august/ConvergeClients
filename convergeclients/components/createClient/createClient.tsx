@@ -36,7 +36,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { DayPicker } from "react-day-picker";
-import { apiCreateClient } from "./apiCreatClient";
+import { apiCreateClient } from "../../conection/apiCreatClient";
 
 const schema = z.object({
   titulo: z
@@ -84,7 +84,7 @@ export function FormCreate() {
         <DialogHeader>
           <DialogTitle>Adicionar um novo cliente</DialogTitle>
           <DialogDescription>
-            Preencha todas as abaixo para adicionar um novo cliente.
+            Preencha todos os campos para adicionar um novo cliente.
           </DialogDescription>
         </DialogHeader>
 
