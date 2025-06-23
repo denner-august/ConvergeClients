@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,11 +29,11 @@
     "sqlite3": "^5.1.7",
     "sweetalert2": "^11.22.0",
     "tailwind-merge": "^3.3.1",
-    "zod": "^3.25.64"
+    "zod": "^3.25.64",
+    "@prisma/client": "^6.9.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@prisma/client": "^6.9.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^20.19.0",
     "@types/react": "^19.1.8",
