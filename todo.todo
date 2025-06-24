@@ -1,3 +1,13 @@
-criar função de remover
-criar alerta para erro ou criação de novo cliente
-colocar regras no formulário para criação de novos clientes
+x - criar alerta para erro ou criação de novo cliente
+x - Adicionar clientes.
+x - Registrar o valor do contrato com o cliente.
+x - Registrar a data de início do contrato.
+x - Adicionar e visualizar detalhes referentes a cada cliente.
+x - colocar regras no formulário para criação de novos clientes
+x - opcional -  Selecionar as plataformas de tráfego utilizadas por cada cliente.
+x - trocar o layout para algo melhor visivel
+x - criar função de remover
+x - adicionar o nome do cliente a dashboard
+x - criar um modal para verificar informações na versão mobile
+
+adicionar grafico com a quantidade de clientes ativos e o valor faturado
