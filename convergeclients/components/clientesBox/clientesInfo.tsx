@@ -6,6 +6,14 @@ import tableStyles from "./tableClients.module.scss";
 import { UserRoundX } from "lucide-react";
 import { removeClients } from "@/conection/removeClient";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 interface clientesEncontradosProps {
   clientes: {
     id: number;
@@ -20,7 +28,6 @@ interface clientesEncontradosProps {
 
 interface ClientesInfoProps {
   id: number;
-
   titulo: string;
   ClientNome: string;
   descrição: string;
@@ -33,6 +40,7 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
   const clientes = clientesEncontrados.clientes || [];
 
   const [isMobile, setIsMobile] = useState(false);
+  const [userSelected, setUserSelected] = useState({} as ClientesInfoProps);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,8 +54,6 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
   }, []);
 
   const TableClientes = () => {
-    // quero remover alguns itens se o width da tela for menor que 768px
-
     return (
       <table className={tableStyles.Container}>
         <thead>
@@ -63,7 +69,7 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
         </thead>
         <tbody className={tableStyles.tableBody}>
           {clientes.map((cliente: ClientesInfoProps) => (
-            <tr key={cliente.id}>
+            <tr key={cliente.id} onClick={() => setUserSelected(cliente)}>
               <td>{cliente.ClientNome}</td>
               <td>{cliente.titulo}</td>
               <td>{cliente.descrição}</td>
@@ -116,7 +122,7 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
         </thead>
         <tbody className={tableStyles.tableBody}>
           {clientes.map((cliente: ClientesInfoProps) => (
-            <tr key={cliente.id}>
+            <tr key={cliente.id} onClick={() => setUserSelected(cliente)}>
               <td>{cliente.ClientNome}</td>
 
               <td>{cliente.modeloDeNegocio}</td>
@@ -144,5 +150,38 @@ export function ClientesInfo(clientesEncontrados: clientesEncontradosProps) {
     );
   };
 
-  return <>{isMobile ? <TableClientesMobile /> : <TableClientes />}</>;
+  return (
+    <>
+      <Dialog>
+        <DialogTrigger style={{ width: "100%" }}>
+          {isMobile ? <TableClientesMobile /> : <TableClientes />}
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Informações do seu cliente</DialogTitle>
+          <DialogDescription></DialogDescription>
+          <h3>Nome: {userSelected.ClientNome}</h3>
+          <p>Título: {userSelected.titulo}</p>
+          <p>Descrição: {userSelected.descrição}</p>
+          <p>Modelo de Negócio: {userSelected.modeloDeNegocio}</p>
+          <span>
+            Valor Atual do Contrato:{" "}
+            {Number(userSelected.valorAtualDoContrato).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </span>
+          <span>
+            Data de Início:{" "}
+            {userSelected.dataInicio
+              ? new Date(userSelected.dataInicio).toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })
+              : "Data não informada"}
+          </span>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }
