@@ -6,10 +6,12 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ContainerBox } from "@/components/containerBox/containerBox";
 
 export default async function Home() {
-  const getAllClients = await fetch(
-    "http://localhost:3000/api/users/getUsers",
-    { cache: "no-store" }
-  );
+  const url = process.env.URL ?? "http://localhost:3000";
+
+  const getAllClients = await fetch(`${url}/api/users/getUsers`, {
+    cache: "no-store",
+  });
+
   const clients = await getAllClients.json();
 
   return (
