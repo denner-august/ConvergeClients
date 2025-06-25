@@ -6,7 +6,9 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ContainerBox } from "@/components/containerBox/containerBox";
 
 export default async function Home() {
-  const url = process.env.URL ?? "http://localhost:3000";
+  const url = process.env.URL ?? "https://localhost:3000";
+
+  console.log(url);
 
   const getAllClients = await fetch(`${url}/api/users/getUsers`, {
     cache: "no-store",
