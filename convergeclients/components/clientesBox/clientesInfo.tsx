@@ -51,7 +51,7 @@ export function ClientesInfo(clientesEncontrados: DateClientesProps) {
           <DialogTitle>Informações do seu cliente</DialogTitle>
           <DialogDescription></DialogDescription>
           <h3>Nome: {userSelected.ClientNome}</h3>
-          <p>Título: {userSelected.titulo}</p>
+          <p>Negocio do cliente: {userSelected.titulo}</p>
           <p>Descrição: {userSelected.descrição}</p>
           <p>Modelo de Negócio: {userSelected.modeloDeNegocio}</p>
           <span>
