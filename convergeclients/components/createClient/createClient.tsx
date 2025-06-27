@@ -39,19 +39,19 @@ import { DayPicker } from "react-day-picker";
 import { apiCreateClient } from "../../conection/apiCreatClient";
 
 const schema = z.object({
-  titulo: z
-    .string({ error: "O titulo é obrigatório" })
-    .min(1, "O titulo é obrigatório"),
   nome: z
     .string({ error: "O nome é obrigatório" })
     .min(1, "O nome é obrigatório"),
   descrição: z
     .string({ error: "A descrição é obrigatória" })
     .min(1, "A descrição é obrigatória"),
+  titulo: z
+    .string({ error: "O nome do negocio é obrigatório" })
+    .min(1, "O nome do negocio é obrigatório"),
   modeloDeNegocio: z
     .string({ error: "O modelo de negocio é obrigatório" })
     .min(1, "O modelo de negocio é obrigatório"),
-  // O valor do contrato deve ser um número
+
   valorDoContrato: z
     .number({ error: "O valor do contrato deve ser positivo" })
     .positive({ error: "O valor do contrato deve ser positivo" }),
@@ -91,19 +91,7 @@ export function FormCreate() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="titulo">Titulo</Label>
-
-              <p>{errors.titulo?.message}</p>
-              <Input
-                defaultValue={"titulo do cliente"}
-                id="titulo"
-                placeholder="Escolha um titulo para o cliente"
-                {...register("titulo")}
-              />
-            </div>
-
-            <div className="grid gap-3">
-              <Label htmlFor="NomeCliente">Nome</Label>
+              <Label htmlFor="NomeCliente">Nome do cliente</Label>
               <p>{errors.nome?.message}</p>
               <Input
                 defaultValue={"nome do cliente"}
@@ -112,6 +100,7 @@ export function FormCreate() {
                 placeholder="Digite o nome do cliente"
               />
             </div>
+
             <div className="grid gap-3">
               <Label htmlFor="DescriçãoCliente">Descrição</Label>
               <p>{errors.descrição?.message}</p>
@@ -120,6 +109,18 @@ export function FormCreate() {
                 id="descrição"
                 placeholder="Escreva uma breve descrição"
                 {...register("descrição")}
+              />
+            </div>
+
+            <div className="grid gap-3">
+              <Label htmlFor="titulo">Nome do negocio</Label>
+
+              <p>{errors.titulo?.message}</p>
+              <Input
+                defaultValue={"Nome do negocio"}
+                id="titulo"
+                placeholder="Nome do negocio do negocio"
+                {...register("titulo")}
               />
             </div>
 
