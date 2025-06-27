@@ -1,7 +1,7 @@
 # ConvergeClients: Plataforma para Gestão de Tráfego Pago
 
-
 Este projeto, desenvolvido como Trabalho de Conclusão de Curso (TCC), apresenta uma plataforma web destinada a auxiliar gestores de tráfego pago na organização e centralização de informações cruciais para o seu dia a dia.
+
 ## Contexto e Motivação
 
 O projeto surge da necessidade observada na prática da gestão de tráfego pago, onde a desorganização pode levar à perda de prazos, confusão no acompanhamento de campanhas e impacto negativo na percepção do cliente.
@@ -30,7 +30,7 @@ A validação da solução foi realizada com o auxílio do Cypress, que permitiu
 ## Resultados e Apelo Mercadológico
 
 A plataforma oferece como principais benefícios a redução da desorganização, a centralização de informações, a otimização do tempo do gestor e o acompanhamento facilitado de clientes e campanhas.
-A solução atende a uma necessidade real de muitos gestores de tráfego, especialmente iniciantes, que buscam uma ferramenta para organizar seu trabalho. 
+A solução atende a uma necessidade real de muitos gestores de tráfego, especialmente iniciantes, que buscam uma ferramenta para organizar seu trabalho.
 
 ## Considerações Finais
 
