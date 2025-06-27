@@ -4,7 +4,7 @@ import { UserRoundX } from "lucide-react";
 import { removeClients } from "@/conection/removeClient";
 
 import styles from "../clientContainer/Clientes.module.scss";
-import tableStyles from "../clientesBox/tableClients.module.scss";
+import tableStyles from "../tableClientes/tableClients.module.scss";
 
 import { ClientesProps } from "@/types/types";
 
@@ -16,9 +16,9 @@ export function TableClientes(props: {
     <table className={tableStyles.Container}>
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Título</th>
+          <th>Nome do cliente</th>
           <th>Descrição</th>
+          <th>Nome do negocio</th>
           <th>Modelo de Negócio</th>
           <th>Valor do Contrato</th>
           <th>Data de Início</th>
@@ -29,8 +29,8 @@ export function TableClientes(props: {
         {props.clients.map((cliente: ClientesProps) => (
           <tr key={cliente.id} onClick={() => props.selectClient(cliente)}>
             <td>{cliente.ClientNome}</td>
-            <td>{cliente.titulo}</td>
             <td>{cliente.descrição}</td>
+            <td>{cliente.titulo}</td>
             <td>{cliente.modeloDeNegocio}</td>
             <td>
               {Number(cliente.valorAtualDoContrato).toLocaleString("pt-BR", {
