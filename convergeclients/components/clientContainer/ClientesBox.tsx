@@ -1,17 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./Clientes.module.scss";
-import { ClientesInfo } from "./clientesInfo";
+import { ClientesInfo } from "../clientesBox/clientesInfo";
 
-interface ClientesProps {
-  id: number;
-  ClientNome: string;
-  titulo: string;
-  descrição: string;
-  modeloDeNegocio: string;
-  valorAtualDoContrato: string;
-  dataInicio: string;
-}
+import { ClientesProps } from "@/types/types";
 
 export function ClientesBox({ AllClients }: { AllClients: ClientesProps[] }) {
   const [searchClientes, setSearchClientes] = useState("");

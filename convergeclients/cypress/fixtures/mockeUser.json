@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "titulo": "Titulo do negocio",
+    "ClientNome": "Denner",
+    "descrição": "Descrição sobre o cliente",
+    "plataforma": "[\"meta ads\",\"google ads\"]",
+    "modeloDeNegocio": "E-commerce",
+    "valorAtualDoContrato": 1000,
+    "dataInicio": "2025-06-30T17:55:14.836Z"
+  }
+]

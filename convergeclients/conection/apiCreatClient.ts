@@ -4,6 +4,7 @@ type apiProps = {
   titulo: string;
   nome: string;
   descrição: string;
+  plataforma: string[];
   modeloDeNegocio: string;
   valorDoContrato: number;
 };
@@ -13,6 +14,7 @@ export async function apiCreateClient(users: apiProps, data: Date) {
   const name = users.nome;
   const descrição = users.descrição;
   const modeloNegocio = users.modeloDeNegocio;
+  const plataforma = users.plataforma;
   const valorDoContrato = users.valorDoContrato;
 
   const dataInicio = data ? data.toLocaleDateString() : ""; // Formata a data
@@ -27,6 +29,7 @@ export async function apiCreateClient(users: apiProps, data: Date) {
       name,
       descrição,
       modeloNegocio,
+      plataforma,
       valorDoContrato,
       dataInicio,
     }),
