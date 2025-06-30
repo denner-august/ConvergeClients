@@ -5,6 +5,7 @@ export interface DateClientesProps {
     titulo: string;
     descrição: string;
     modeloDeNegocio: string;
+    plataforma: string;
     valorAtualDoContrato: string;
     dataInicio: string;
   }[];
@@ -15,7 +16,8 @@ export interface ClientesProps {
   titulo: string;
   ClientNome: string;
   descrição: string;
-  dataInicio: string;
+  plataforma: string;
   modeloDeNegocio: string;
   valorAtualDoContrato: string;
+  dataInicio: string;
 }
