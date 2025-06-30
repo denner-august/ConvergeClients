@@ -56,6 +56,8 @@ const schema = z.object({
     .number({ error: "O valor do contrato deve ser positivo" })
     .positive({ error: "O valor do contrato deve ser positivo" }),
   inicioDoContrato: z.date().optional(),
+
+  plataforma: z.array(z.string()).min(1, "Selecione pelo menos uma plataforma"),
 });
 
 export function FormCreate() {
@@ -64,7 +66,17 @@ export function FormCreate() {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm({ resolver: zodResolver(schema) });
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      nome: "Nome do cliente",
+      descrição: "Descrição sobre o cliente",
+      titulo: "Titulo do negocio",
+
+      valorDoContrato: 1000,
+      plataforma: ["meta ads"],
+    },
+  });
   const [selected, setSelected] = useState<Date>(new Date());
 
   function onSubmit(values: z.infer<typeof schema>) {
@@ -94,7 +106,6 @@ export function FormCreate() {
               <Label htmlFor="NomeCliente">Nome do cliente</Label>
               <p>{errors.nome?.message}</p>
               <Input
-                defaultValue={"nome do cliente"}
                 {...register("nome")}
                 id="nome"
                 placeholder="Digite o nome do cliente"
@@ -105,7 +116,6 @@ export function FormCreate() {
               <Label htmlFor="DescriçãoCliente">Descrição</Label>
               <p>{errors.descrição?.message}</p>
               <Input
-                defaultValue={"descrição do cliente"}
                 id="descrição"
                 placeholder="Escreva uma breve descrição"
                 {...register("descrição")}
@@ -117,7 +127,6 @@ export function FormCreate() {
 
               <p>{errors.titulo?.message}</p>
               <Input
-                defaultValue={"Nome do negocio"}
                 id="titulo"
                 placeholder="Nome do negocio do negocio"
                 {...register("titulo")}
@@ -154,6 +163,73 @@ export function FormCreate() {
                 </SelectContent>
               </Select>
             </div>
+
+            <div className={styles.plataforma}>
+              <p>qual plataforma seu cliente usa?</p>
+
+              <p>{errors.plataforma?.message}</p>
+
+              <div>
+                <Label htmlFor="meta">Meta ads</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="meta ads"
+                  id="meta"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="google">Google ads</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="google ads"
+                  id="google"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="linkedin">Linkedin</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="linkedin"
+                  id="linkedin"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="pinterest">pinterest</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="pinterest"
+                  id="pinterest"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="taboola">Taboola</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="taboola"
+                  id="taboola"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="tiktok">Tiktok</Label>
+                <input
+                  {...register("plataforma")}
+                  type="checkbox"
+                  value="tiktok"
+                  id="tiktok"
+                />
+              </div>
+            </div>
+
             <div className="grid gap-3">
               <Label htmlFor="contratoCliente">
                 Valor do contrato do cliente
@@ -161,7 +237,6 @@ export function FormCreate() {
 
               <p>{errors.valorDoContrato?.message}</p>
               <Input
-                defaultValue={10000}
                 id="valorContrato"
                 type="number"
                 placeholder="digite o valor por extenso: ex: 10000 "
