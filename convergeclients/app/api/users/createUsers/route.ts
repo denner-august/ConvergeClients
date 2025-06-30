@@ -11,6 +11,7 @@ export async function POST(request: Request) {
       name,
       descrição,
       modeloNegocio,
+      plataforma,
       valorDoContrato,
       dataInicio,
     } = data;
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
         ClientNome: name,
         descrição: descrição,
         modeloDeNegocio: modeloNegocio,
+        plataforma: JSON.stringify(plataforma),
         valorAtualDoContrato: Number(valorDoContrato),
         dataInicio: isNaN(new Date(dataInicio).getTime())
           ? new Date()
