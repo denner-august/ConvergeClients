@@ -15,10 +15,11 @@ datasource db {
 
 model users {
   id                   Int      @id @default(autoincrement())
-  ClientNome           String
   titulo               String
+  ClientNome           String
   descrição          String
-  dataInicio           DateTime
+  plataforma           String
   modeloDeNegocio      String
   valorAtualDoContrato Float
+  dataInicio           DateTime
 }
