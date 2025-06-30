@@ -54,6 +54,12 @@ export function ClientesInfo(clientesEncontrados: DateClientesProps) {
           <p>Negocio do cliente: {userSelected.titulo}</p>
           <p>Descrição: {userSelected.descrição}</p>
           <p>Modelo de Negócio: {userSelected.modeloDeNegocio}</p>
+          <p>
+            Plataformas usadas:{" "}
+            {userSelected.plataforma
+              ? JSON.parse(userSelected.plataforma).join(", ")
+              : ""}
+          </p>
           <span>
             Valor Atual do Contrato:{" "}
             {Number(userSelected.valorAtualDoContrato).toLocaleString("pt-BR", {
