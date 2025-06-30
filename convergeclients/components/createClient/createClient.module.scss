@@ -12,4 +12,30 @@
   p {
     color: red;
   }
+
+  .plataforma {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    p {
+      color: black;
+
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    p:nth-of-type(2) {
+      color: red;
+    }
+
+    div {
+      display: flex;
+      margin: 0.5rem;
+
+      label {
+        margin-right: 0.5rem;
+      }
+    }
+  }
 }
