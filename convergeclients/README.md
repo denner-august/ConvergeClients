@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 
 ## Getting Started
 
@@ -13,6 +13,10 @@ pnpm dev
 # or
 bun dev
 ```
+
+## Eu utilizei o pnpm e recomendo que usem o mesmo para uma melhorar compatibildiade
+
+### para também podem usar "pnpm run build" e depois "pnpm run start" para ir mais dirto ao ponto
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
