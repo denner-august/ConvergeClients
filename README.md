@@ -36,6 +36,8 @@ A solução atende a uma necessidade real de muitos gestores de tráfego, especi
 
 O desenvolvimento desta plataforma representa um aprendizado significativo e a aplicação prática dos conhecimentos adquiridos durante o curso de Desenvolvimento Full Stack
 
+### pode ter diferenças da versão final para os documentos visando a facilidade do usuario final
+
 ## Autor
 
 Denner Bernardes
